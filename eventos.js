@@ -59,12 +59,13 @@ form.addEventListener('submit', e => {
   </svg>
   <input type="text" value="${inputName.value}" readonly>
   <input type="text" value="${inputPhone.value}" readonly>
-  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="edit-icon">
+
+  <button class="edit-btn"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="edit-icon">
     <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
   </svg>
-  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="check-icon">
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="check-icon check">
   <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z" />
-  </svg>
+  </svg></button>
   `;
   list.append(newContact);
   inputName.value = '';
@@ -83,8 +84,9 @@ list.addEventListener('click', e => {
     localStorage.setItem('contacts', list.innerHTML);
   }
 
-  if (e.target.closest('.edit-icon')) {
-    const editBtn = e.target.closest('.edit-icon');
+  if (e.target.closest('.edit-btn')) {
+    const editBtn = e.target.closest('.edit-btn');
+    console.log(editBtn);
     const editName = editBtn.parentElement.children[1];
     const editPhone = editBtn.parentElement.children[2];
     
@@ -92,22 +94,26 @@ list.addEventListener('click', e => {
       editBtn.classList.add('editando');
       editName.removeAttribute('readonly');
       editPhone.removeAttribute('readonly');
+      editBtn.children[0].classList.add ('check');
+      editBtn.children[1].classList.remove ('check')
       
     } else {
       editBtn.classList.remove('editando');
       editName.setAttribute('readonly', true);
       editPhone.setAttribute('readonly', true);
-
+      
+      
       // Guardar valor
       editName.setAttribute('value', editName.value);
       editPhone.setAttribute('value', editPhone.value);
-
+      editBtn.children[1].classList.add ('check');
+      editBtn.children[0].classList.remove ('check')
+      
       localStorage.setItem('contacts', list.innerHTML);
       
     }
   };
 });
-
 
 const loadFromLocal = () => {
   const localList = localStorage.getItem('contacts');

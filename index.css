@@ -32,6 +32,19 @@ input {
     border-radius: 0.3rem;
     height: 1.2rem;
     width: 8rem;
+    border: 0;
+    background-color: rgb(206, 160, 218);
+    margin-left: 1rem;
+    padding: 0.1rem;
+    font-size: 1rem;
+}
+.check {
+    display: none;    
+}
+#name-input, #phone-input {
+    background-color: white;
+    margin-left: 0.5rem;
+    font-size: 0.8rem;
 }
   
 .correct {
@@ -95,7 +108,8 @@ i {
     overflow-y:scroll;
     border: solid 0.1rem;
     background-color: rgb(215, 191, 221);
-    height: 13rem;
+    height: 30%;
+    width: 90%;
     padding: 0;
 }
 .list-item {
@@ -104,12 +118,10 @@ i {
     padding: 0.5rem;
     list-style: none;
     text-align: center;
-
 }
 @media (min-width: 768px) {
     #list {
-        height: 13rem;
-        width: 75%;    
+        width: 75%;
     }
     #form {
         width: 28rem;    
@@ -120,8 +132,8 @@ i {
 }
 @media (min-width: 1024px) {
     #list {
-        height: 19rem;
-        width: 70%;    
+        height: 45%;
+        width: 75%;    
     }
     #form {
         width: 28rem;    
