@@ -5,7 +5,7 @@ const formBtn = document.querySelector('#form-btn');
 const list = document.querySelector('#list');
 
 const NAME_REGEX = /[A-Z][a-z]{2,20}$/;
-const PHONE_REGEX = /^[0]{1}[4]{1}[12]{1}[462]{1}[0-9]{7}$/;
+const PHONE_REGEX = /^[0]{1}[24]{1}[12]{1}[462]{1}[0-9]{7}$/;
 
 let nameValidation = false;
 let phoneValidation = false;
@@ -60,7 +60,7 @@ form.addEventListener('submit', e => {
   <input type="text" value="${inputName.value}" readonly>
   <input type="text" value="${inputPhone.value}" readonly>
 
-  <button class="edit-btn"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="edit-icon">
+  <button class="edit-btn"  disabled ><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="edit-icon">
     <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
   </svg>
   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="check-icon check">
@@ -94,29 +94,22 @@ list.addEventListener('click', e => {
       editName.removeAttribute('readonly');
       editPhone.removeAttribute('readonly');
       editBtn.children[0].classList.add('check');
-      editBtn.children[1].classList.remove('check')
+      editBtn.children[1].classList.remove('check');
+      editName.classList.add ('modif')
+      editPhone.classList.add ('modif')
       
       editName.addEventListener('input', e => {
         nameValidation = NAME_REGEX.test(editName.value);
         validateInput(editName, nameValidation)
+        formBtn.disabled = true;   
       });
       
       editPhone.addEventListener('input', e => {
         phoneValidation = PHONE_REGEX.test(editPhone.value);
         validateInput(editPhone, phoneValidation)
+        formBtn.disabled = true;   
       });
-      
-      if (validation) {
-          input.classList.remove('correct');              //1. Quitar validacion del input
-      }
-      
-      // if (nameValidation && phoneValidation) {         //2. Quitar boton de guardar
-      //   formBtn.disabled = true;
-      //   editBtn = true;
-      // } else {
-        //   formBtn.disabled = true;
-        //   editBtn = false;
-      // }                                                 //3. Que no se mueva en input en error
+                                      
       
     } else {
       editBtn.classList.remove('editando');
@@ -129,8 +122,22 @@ list.addEventListener('click', e => {
       editPhone.setAttribute('value', editPhone.value);
       editBtn.children[1].classList.add('check');
       editBtn.children[0].classList.remove('check')
+      editName.classList.remove ('modif');
+      editPhone.classList.remove ('modif');
+      editPhone.classList.remove ('modif');
+      editPhone.classList.add ('inut');
+
+      
+      if (input.value  === true) {
+        input.classList.remove('error');
+        input.classList.remove('correct');
+      }
       
       localStorage.setItem('contacts', list.innerHTML);
+      
+      if (nameValidation && phoneValidation) {
+        formBtn.disabled = false;
+      }
       
     }
   };

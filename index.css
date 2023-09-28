@@ -53,6 +53,9 @@ input {
     margin-left: 0.5rem;
     font-size: 0.8rem;
 }
+.modif {
+    background-color: white;
+}
   
 .correct {
     border: 2px solid rgb(117, 199, 117);
@@ -120,11 +123,12 @@ i {
     padding: 0;
 }
 .list-item {
+    display: flex;
     background-color: rgb(206, 160, 218);
     margin: 1rem;
     padding: 0.5rem;
     list-style: none;
-    text-align: center;
+    justify-content: center;
 }
 @media (min-width: 768px) {
     #list {
