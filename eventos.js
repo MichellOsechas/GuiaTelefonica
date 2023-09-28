@@ -85,17 +85,38 @@ list.addEventListener('click', e => {
   }
 
   if (e.target.closest('.edit-btn')) {
-    const editBtn = e.target.closest('.edit-btn');
-    console.log(editBtn);
+    const editBtn = e.target.closest('.edit-btn'); // Que significa?
     const editName = editBtn.parentElement.children[1];
     const editPhone = editBtn.parentElement.children[2];
-    
-    if (!editBtn.classList.contains('editando')) {
+
+    if (!editBtn.classList.contains('editando')) { //? Contains?
       editBtn.classList.add('editando');
       editName.removeAttribute('readonly');
       editPhone.removeAttribute('readonly');
-      editBtn.children[0].classList.add ('check');
-      editBtn.children[1].classList.remove ('check')
+      editBtn.children[0].classList.add('check');
+      editBtn.children[1].classList.remove('check')
+      
+      editName.addEventListener('input', e => {
+        nameValidation = NAME_REGEX.test(editName.value);
+        validateInput(editName, nameValidation)
+      });
+      
+      editPhone.addEventListener('input', e => {
+        phoneValidation = PHONE_REGEX.test(editPhone.value);
+        validateInput(editPhone, phoneValidation)
+      });
+      
+      if (validation) {
+          input.classList.remove('correct');              //1. Quitar validacion del input
+      }
+      
+      // if (nameValidation && phoneValidation) {         //2. Quitar boton de guardar
+      //   formBtn.disabled = true;
+      //   editBtn = true;
+      // } else {
+        //   formBtn.disabled = true;
+        //   editBtn = false;
+      // }                                                 //3. Que no se mueva en input en error
       
     } else {
       editBtn.classList.remove('editando');
@@ -106,8 +127,8 @@ list.addEventListener('click', e => {
       // Guardar valor
       editName.setAttribute('value', editName.value);
       editPhone.setAttribute('value', editPhone.value);
-      editBtn.children[1].classList.add ('check');
-      editBtn.children[0].classList.remove ('check')
+      editBtn.children[1].classList.add('check');
+      editBtn.children[0].classList.remove('check')
       
       localStorage.setItem('contacts', list.innerHTML);
       
