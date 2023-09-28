@@ -115,6 +115,10 @@ list.addEventListener('click', e => {
       editBtn.classList.remove('editando');
       editName.setAttribute('readonly', true);
       editPhone.setAttribute('readonly', true);
+      editPhone.classList.remove('error');
+      editPhone.classList.remove('correct');
+      editName.classList.remove('error');
+      editName.classList.remove('correct');
       
       
       // Guardar valor
@@ -125,19 +129,8 @@ list.addEventListener('click', e => {
       editName.classList.remove ('modif');
       editPhone.classList.remove ('modif');
       editPhone.classList.remove ('modif');
-      editPhone.classList.add ('inut');
 
-      
-      if (input.value  === true) {
-        input.classList.remove('error');
-        input.classList.remove('correct');
-      }
-      
       localStorage.setItem('contacts', list.innerHTML);
-      
-      if (nameValidation && phoneValidation) {
-        formBtn.disabled = false;
-      }
       
     }
   };
