@@ -118,21 +118,24 @@ i {
     overflow-y:scroll;
     border: solid 0.1rem;
     background-color: rgb(215, 191, 221);
-    height: 30%;
-    width: 90%;
+    height: 40%;
+    width: 95%;
     padding: 0;
 }
 .list-item {
-    display: flex;
     background-color: rgb(206, 160, 218);
     margin: 1rem;
     padding: 0.5rem;
     list-style: none;
     justify-content: center;
+    align-items: center;
 }
 @media (min-width: 768px) {
     #list {
         width: 75%;
+    }
+    .list-item {
+        display: flex;
     }
     #form {
         width: 28rem;    
@@ -145,6 +148,9 @@ i {
     #list {
         height: 45%;
         width: 75%;    
+    }
+    .list-item {
+        display: flex;
     }
     #form {
         width: 28rem;    
