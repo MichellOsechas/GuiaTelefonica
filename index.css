@@ -48,6 +48,9 @@ input {
 .check {
     display: none;    
 }
+svg {
+    cursor: pointer;
+}
 #name-input, #phone-input {
     background-color: white;
     margin-left: 0.5rem;
@@ -107,6 +110,7 @@ i {
     border: solid 0.1rem white;
     padding: 0.4rem;
     border-radius: 2rem;
+    cursor: pointer;
 }
 
 #form {
