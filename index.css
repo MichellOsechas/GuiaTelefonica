@@ -20,6 +20,8 @@ body {
 }
 .delete-icon {
     color: rgb(190, 7, 7);
+    cursor: pointer;
+
 }
 .edit-icon {
     color: rgb(0, 0, 0);
@@ -32,8 +34,18 @@ body {
 .edit-btn {
     background-color: rgb(206, 160, 218);
     border: 0;
+    cursor: pointer;
+
+}
+.edit-btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
 }
   
+.edit-btn:hover:disabled {
+    color: #22c55e;
+}
+
 input {
     outline: none;
     border-radius: 0.3rem;
@@ -48,9 +60,7 @@ input {
 .check {
     display: none;    
 }
-svg {
-    cursor: pointer;
-}
+
 #name-input, #phone-input {
     background-color: white;
     margin-left: 0.5rem;
